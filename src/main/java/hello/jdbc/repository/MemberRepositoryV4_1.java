@@ -1,7 +1,7 @@
 package hello.jdbc.repository;
 
 import hello.jdbc.domain.Member;
-import hello.jdbc.repository.ex.MyDbRuntimeException;
+import hello.jdbc.repository.ex.MyDbException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.jdbc.datasource.DataSourceUtils;
 import org.springframework.jdbc.support.JdbcUtils;
@@ -42,7 +42,7 @@ public class MemberRepositoryV4_1 implements MemberRepository {
             return member;
         } catch (SQLException e) {
             log.error("db error", e);
-            throw new MyDbRuntimeException(e);
+            throw new MyDbException(e);
         } finally {
             close(con, pstmt, rs);
         }
@@ -73,7 +73,7 @@ public class MemberRepositoryV4_1 implements MemberRepository {
 
         } catch (SQLException e) {
             log.error("db error", e);
-            throw new MyDbRuntimeException(e);
+            throw new MyDbException(e);
         } finally {
             close(con, pstmt, rs);
         }
@@ -95,7 +95,7 @@ public class MemberRepositoryV4_1 implements MemberRepository {
             log.info("update resultSize={}", resultSize);
         } catch (SQLException e) {
             log.error("db error", e);
-            throw new MyDbRuntimeException(e);
+            throw new MyDbException(e);
         } finally {
             close(con, pstmt, null);
         }
@@ -116,7 +116,7 @@ public class MemberRepositoryV4_1 implements MemberRepository {
             log.info("delete resultSize={}", resultSize);
         } catch (SQLException e) {
             log.error("db error", e);
-            throw new MyDbRuntimeException(e);
+            throw new MyDbException(e);
         } finally {
             close(con, pstmt, null);
         }
